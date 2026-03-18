@@ -1,0 +1,31 @@
+﻿@model IEnumerable<EventEaseT.Models.Booking>
+
+<div class="container mt-4">
+    <h2>Bookings</h2>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Booking Id</th>
+                <th>Event</th>
+                <th>Venue</th>
+                <th>Person Name</th>
+                <th>Contact Details</th>
+                <th>Booking Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.BookingId</td>
+                    <td>@item.Event?.EventName</td>
+                    <td>@item.Venue?.VenueName</td>
+                    <td>@item.PersonName</td>
+                    <td>@item.ContactDetails</td>
+                    <td>@item.BookingDate.ToString("yyyy-MM-dd HH:mm")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

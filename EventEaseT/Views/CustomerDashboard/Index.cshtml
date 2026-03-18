@@ -1,0 +1,40 @@
+﻿@model IEnumerable<EventEaseT.Models.Booking>
+
+<div class="container mt-4">
+    <h2>My Bookings</h2>
+    <p>
+        <a asp-action="CreateBooking" class="btn btn-primary">Book an Event</a>
+        <a asp-action="Venues" class="btn btn-secondary">View Venues</a>
+    </p>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Event</th>
+                <th>Venue</th>
+                <th>Person Name</th>
+                <th>Contact Details</th>
+                <th>Booking Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Event?.EventName</td>
+                    <td>@item.Venue?.VenueName</td>
+                    <td>@item.PersonName</td>
+                    <td>@item.ContactDetails</td>
+                    <td>@item.BookingDate.ToString("yyyy-MM-dd HH:mm")</td>
+                    <td>
+                        <a asp-action="EditBooking" asp-route-id="@item.BookingId" class="btn btn-warning btn-sm">Edit</a>
+                        <form asp-action="DeleteBooking" asp-route-id="@item.BookingId" method="post" style="display:inline">
+                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

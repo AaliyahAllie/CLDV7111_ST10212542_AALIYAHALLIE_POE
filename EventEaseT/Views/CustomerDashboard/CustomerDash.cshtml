@@ -1,0 +1,65 @@
+﻿@model IEnumerable<EventEaseT.Models.Booking>
+
+<style>
+    /* Global style for venue images inside cards */
+    .venue-img {
+        width: 100%; /* fill the card width */
+        height: 8rem; /* fixed height for uniform cards */
+        object-fit: cover; /* crop/scale nicely */
+    }
+</style>
+
+<div class="container mt-4">
+    <h2 class="mb-4">Customer Dashboard</h2>
+
+    <!-- Quick actions -->
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <a asp-action="CreateBooking" class="btn btn-primary w-100 mb-2">Book an Event</a>
+        </div>
+        <div class="col-md-6">
+            <a asp-action="Venues" class="btn btn-secondary w-100 mb-2">Browse Venues</a>
+        </div>
+    </div>
+
+    <!-- Bookings overview -->
+    <div class="row">
+        @if (!Model.Any())
+        {
+            <div class="col-12">
+                <div class="alert alert-info text-center">
+                    You have no bookings yet. Start by booking an event!
+                </div>
+            </div>
+        }
+        else
+        {
+            @foreach (var booking in Model)
+            {
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <!-- Venue image -->
+                        <img src="@booking.Venue?.ImageUrl" class="venue-img card-img-top" alt="@booking.Venue?.VenueName" />
+
+                        <div class="card-body">
+                            <h5 class="card-title">@booking.Event?.EventName</h5>
+                            <p class="card-text">
+                                <strong>Venue:</strong> @booking.Venue?.VenueName <br />
+                                <strong>Date:</strong> @booking.BookingDate.ToString("yyyy-MM-dd HH:mm") <br />
+                                <strong>Name:</strong> @booking.PersonName <br />
+                                <strong>Contact:</strong> @booking.ContactDetails
+                            </p>
+                        </div>
+
+                        <div class="card-footer text-center">
+                            <a asp-action="EditBooking" asp-route-id="@booking.BookingId" class="btn btn-warning btn-sm">Edit</a>
+                            <form asp-action="DeleteBooking" asp-route-id="@booking.BookingId" method="post" style="display:inline">
+                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>

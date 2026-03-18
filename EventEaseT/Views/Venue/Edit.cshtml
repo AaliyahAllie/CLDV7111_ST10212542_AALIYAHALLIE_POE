@@ -1,0 +1,28 @@
+﻿@model EventEaseT.Models.Venue
+@{
+    ViewData["Title"] = "Edit Venue";
+}
+
+<div class="container mt-5">
+    <h2>Edit Venue</h2>
+    <form asp-action="Edit" method="post">
+        <input type="hidden" asp-for="VenueId" />
+        <div class="mb-3">
+            <label class="form-label">Venue Name</label>
+            <input asp-for="VenueName" class="form-control" required />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Location</label>
+            <input asp-for="Location" class="form-control" required />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Capacity</label>
+            <input asp-for="Capacity" type="number" class="form-control" required />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Image URL</label>
+            <input asp-for="ImageUrl" class="form-control" />
+        </div>
+        <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+</div>
