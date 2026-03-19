@@ -2,11 +2,16 @@
 
 <div class="container mt-4">
     <h2>My Bookings</h2>
+
+    <!-- Quick action buttons -->
+    <!-- Allows customers to book new events or browse venues -->
     <p>
         <a asp-action="CreateBooking" class="btn btn-primary">Book an Event</a>
         <a asp-action="Venues" class="btn btn-secondary">View Venues</a>
     </p>
 
+    <!-- Bookings table -->
+    <!-- Displays all bookings in a tabular format -->
     <table class="table table-striped">
         <thead>
             <tr>
@@ -19,16 +24,22 @@
             </tr>
         </thead>
         <tbody>
+            <!-- Loop through each booking -->
             @foreach (var item in Model)
             {
                 <tr>
+                    <!-- Booking details -->
                     <td>@item.Event?.EventName</td>
                     <td>@item.Venue?.VenueName</td>
                     <td>@item.PersonName</td>
                     <td>@item.ContactDetails</td>
                     <td>@item.BookingDate.ToString("yyyy-MM-dd HH:mm")</td>
+
+                    <!-- Action buttons -->
                     <td>
+                        <!-- Edit booking -->
                         <a asp-action="EditBooking" asp-route-id="@item.BookingId" class="btn btn-warning btn-sm">Edit</a>
+                        <!-- Delete booking -->
                         <form asp-action="DeleteBooking" asp-route-id="@item.BookingId" method="post" style="display:inline">
                             <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                         </form>

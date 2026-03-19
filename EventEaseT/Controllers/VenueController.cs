@@ -1,5 +1,5 @@
-﻿using EventEaseT.Data;
-using EventEaseT.Models;
+﻿using EventEaseT.Data;                   // DbContext for EF Core
+using EventEaseT.Models;                 // Venue model
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -7,12 +7,16 @@ public class VenueController : Controller
 {
     private readonly EventEaseContext _context;
 
+    // Constructor injects the database context
     public VenueController(EventEaseContext context)
     {
         _context = context;
     }
 
     // GET: Venue/Index
+    // Retrieves all venues from the database.
+    // Counts the total number of venues and stores it in ViewBag for display.
+    // Passes the list of venues to the Index view.
     public IActionResult Index()
     {
         var venues = _context.Venues.ToList();
@@ -21,9 +25,12 @@ public class VenueController : Controller
     }
 
     // GET: Venue/Create
+    // Displays a form for creating a new venue.
     public IActionResult Create() => View();
 
     // POST: Venue/Create
+    // Handles form submission for creating a new venue.
+    // Validates the model before saving to the database.
     [HttpPost]
     [ValidateAntiForgeryToken]
     public IActionResult Create(Venue venue)
@@ -36,6 +43,7 @@ public class VenueController : Controller
             return RedirectToAction("Index");
         }
 
+        // Log validation errors if model state is invalid
         foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
         {
             Console.WriteLine($"Validation error: {error.ErrorMessage}");
@@ -45,6 +53,8 @@ public class VenueController : Controller
     }
 
     // GET: Venue/Edit/5
+    // Loads an existing venue for editing.
+    // Returns NotFound if the venue does not exist.
     public IActionResult Edit(int id)
     {
         var venue = _context.Venues.Find(id);
@@ -53,6 +63,8 @@ public class VenueController : Controller
     }
 
     // POST: Venue/Edit/5
+    // Updates an existing venue in the database.
+    // Uses a safer pattern: fetch existing venue, update its fields, then save.
     [HttpPost]
     [ValidateAntiForgeryToken]
     public IActionResult Edit(Venue venue)
@@ -62,6 +74,7 @@ public class VenueController : Controller
             var existingVenue = _context.Venues.Find(venue.VenueId);
             if (existingVenue == null) return NotFound();
 
+            // Update fields
             existingVenue.VenueName = venue.VenueName;
             existingVenue.Location = venue.Location;
             existingVenue.Capacity = venue.Capacity;
@@ -71,6 +84,7 @@ public class VenueController : Controller
             return RedirectToAction("Index");
         }
 
+        // Log validation errors if model state is invalid
         foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
         {
             Console.WriteLine($"Validation error: {error.ErrorMessage}");

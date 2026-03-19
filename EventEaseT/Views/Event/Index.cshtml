@@ -2,10 +2,14 @@
 
 <div class="container mt-4">
     <h2>Events</h2>
+
+    <!-- Quick action: Add new event -->
     <p>
         <a asp-action="Create" class="btn btn-primary">Add Event</a>
     </p>
 
+    <!-- Events table -->
+    <!-- Displays all events with details and admin actions -->
     <table class="table table-striped">
         <thead>
             <tr>
@@ -18,18 +22,25 @@
             </tr>
         </thead>
         <tbody>
+            <!-- Loop through each event -->
             @foreach (var item in Model)
             {
                 <tr>
+                    <!-- Event details -->
                     <td>@item.EventName</td>
                     <td>@item.EventDate.ToShortDateString()</td>
                     <td>@item.Description</td>
                     <td>@item.Venue?.VenueName</td>
                     <td>@item.Status</td>
+
+                    <!-- Admin actions -->
                     <td>
+                        <!-- Approve event -->
                         <form asp-action="Approve" method="post" asp-route-id="@item.EventId" style="display:inline">
                             <button type="submit" class="btn btn-success btn-sm">Approve</button>
                         </form>
+
+                        <!-- Deny event -->
                         <form asp-action="Deny" method="post" asp-route-id="@item.EventId" style="display:inline">
                             <button type="submit" class="btn btn-danger btn-sm">Deny</button>
                         </form>

@@ -1,23 +1,31 @@
 ﻿@{
-    ViewData["Title"] = "Login";
+    ViewData["Title"] = "Login"; // Sets the page title
 }
 
 <div class="container mt-5">
     <h2 class="mb-4">Login</h2>
+
+    <!-- Login form -->
+    <!-- Uses POST method to send credentials to AccountController.Login -->
     <form method="post" class="needs-validation" novalidate>
+        <!-- Username field -->
         <div class="mb-3">
             <label for="username" class="form-label">Username</label>
             <input type="text" class="form-control" id="username" name="username" required />
         </div>
 
+        <!-- Password field -->
         <div class="mb-3">
             <label for="password" class="form-label">Password</label>
             <input type="password" class="form-control" id="password" name="password" required />
         </div>
 
+        <!-- Submit button -->
         <button type="submit" class="btn btn-primary">Login</button>
     </form>
 
+    <!-- Error message display -->
+    <!-- If AccountController sets ViewBag.Error, show it here -->
     @if (ViewBag.Error != null)
     {
         <div class="alert alert-danger mt-3">@ViewBag.Error</div>

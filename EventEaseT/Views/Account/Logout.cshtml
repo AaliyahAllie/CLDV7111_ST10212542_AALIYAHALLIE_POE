@@ -1,9 +1,13 @@
 ﻿@{
-    ViewData["Title"] = "Logout";
+    ViewData["Title"] = "Logout"; // Sets the page title
 }
 
 <div class="container mt-5 text-center">
+    <!-- Logout confirmation message -->
     <h2>You have been logged out</h2>
     <p>Your session has ended successfully.</p>
+
+    <!-- Link back to Login page -->
+    <!-- Uses Razor tag helpers to navigate to AccountController.Login -->
     <a asp-controller="Account" asp-action="Login" class="btn btn-primary mt-3">Login Again</a>
 </div>

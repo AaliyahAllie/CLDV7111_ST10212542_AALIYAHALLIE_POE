@@ -2,22 +2,30 @@
 
 <div class="container mt-4">
     <h2>Edit Booking</h2>
+
+    <!-- Edit booking form -->
+    <!-- Posts to BookingController.EditBooking -->
     <form asp-action="EditBooking" method="post">
-        @Html.AntiForgeryToken()
+        @Html.AntiForgeryToken() <!-- Protects against CSRF attacks -->
+        <!-- Hidden field for BookingId -->
+        <!-- Ensures the correct booking record is updated -->
         <input type="hidden" asp-for="BookingId" />
 
+        <!-- Customer name -->
         <div class="mb-3">
             <label class="form-label">Your Name</label>
             <input asp-for="PersonName" class="form-control" />
             <span asp-validation-for="PersonName" class="text-danger"></span>
         </div>
 
+        <!-- Contact details -->
         <div class="mb-3">
             <label class="form-label">Contact Details</label>
             <input asp-for="ContactDetails" class="form-control" />
             <span asp-validation-for="ContactDetails" class="text-danger"></span>
         </div>
 
+        <!-- Submit button -->
         <button type="submit" class="btn btn-primary">Update Booking</button>
     </form>
 </div>

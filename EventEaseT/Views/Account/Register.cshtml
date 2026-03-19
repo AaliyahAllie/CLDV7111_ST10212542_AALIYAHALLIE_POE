@@ -1,30 +1,39 @@
 ﻿@{
-    ViewData["Title"] = "Register";
+    ViewData["Title"] = "Register"; // Sets the page title
 }
 
 <div class="container mt-5">
     <h2 class="mb-4">Create Account</h2>
+
+    <!-- Registration form -->
+    <!-- Uses POST method to send new user details to AccountController.Register -->
     <form method="post" class="needs-validation" novalidate>
+        <!-- Name field -->
         <div class="mb-3">
             <label for="name" class="form-label">Name</label>
             <input type="text" class="form-control" id="name" name="name" required />
         </div>
 
+        <!-- Email field -->
         <div class="mb-3">
             <label for="email" class="form-label">Email</label>
             <input type="email" class="form-control" id="email" name="email" required />
         </div>
 
+        <!-- Username field -->
         <div class="mb-3">
             <label for="username" class="form-label">Username</label>
             <input type="text" class="form-control" id="username" name="username" required />
         </div>
 
+        <!-- Password field -->
         <div class="mb-3">
             <label for="password" class="form-label">Password</label>
             <input type="password" class="form-control" id="password" name="password" required />
         </div>
 
+        <!-- Role selection -->
+        <!-- Allows user to choose between Customer or Admin role -->
         <div class="mb-3">
             <label for="role" class="form-label">Role</label>
             <select class="form-select" id="role" name="role" required>
@@ -33,9 +42,12 @@
             </select>
         </div>
 
+        <!-- Submit button -->
         <button type="submit" class="btn btn-success">Register</button>
     </form>
 
+    <!-- Error message display -->
+    <!-- If AccountController sets ViewBag.Error, show it here -->
     @if (ViewBag.Error != null)
     {
         <div class="alert alert-danger mt-3">@ViewBag.Error</div>

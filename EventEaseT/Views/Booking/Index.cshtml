@@ -3,6 +3,8 @@
 <div class="container mt-4">
     <h2>Bookings</h2>
 
+    <!-- Table displaying all bookings -->
+    <!-- Uses Bootstrap styling for striped rows -->
     <table class="table table-striped">
         <thead>
             <tr>
@@ -15,14 +17,17 @@
             </tr>
         </thead>
         <tbody>
+            <!-- Loop through each booking in the model -->
             @foreach (var item in Model)
             {
                 <tr>
+                    <!-- Booking details -->
                     <td>@item.BookingId</td>
                     <td>@item.Event?.EventName</td>
                     <td>@item.Venue?.VenueName</td>
                     <td>@item.PersonName</td>
                     <td>@item.ContactDetails</td>
+                    <!-- Format booking date as yyyy-MM-dd HH:mm -->
                     <td>@item.BookingDate.ToString("yyyy-MM-dd HH:mm")</td>
                 </tr>
             }

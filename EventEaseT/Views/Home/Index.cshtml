@@ -1,32 +1,39 @@
 ﻿@{
-    ViewData["Title"] = "EventEase";
+    ViewData["Title"] = "EventEase"; // Sets the page title
 }
 
 <div class="hero">
+    <!-- Hero section: main branding and tagline -->
     <h1>EVENTEASE</h1>
     <p>Event Booking with Zero Stress</p>
     <p>Professional booking for all your events, parties or weddings, made easy.</p>
 
+    <!-- Call-to-action buttons -->
     <div class="buttons">
+        <!-- Navigates to AccountController.Login -->
         <a class="btn primary" asp-controller="Account" asp-action="Login">Sign In</a>
+        <!-- Navigates to AccountController.Register -->
         <a class="btn secondary" asp-controller="Account" asp-action="Register">Create Account</a>
     </div>
 </div>
 
 <!-- Features Section -->
 <section class="features">
+    <!-- Venue feature -->
     <div class="feature">
         <img src="~/images/venue-icon.png" alt="Venue Icon" />
         <h3>Venues</h3>
         <p>Browse and manage exceptional spaces. Each venue includes photos, capacity details, and location info.</p>
     </div>
 
+    <!-- Event feature -->
     <div class="feature">
         <img src="~/images/event-icon.png" alt="Event Icon" />
         <h3>Events</h3>
         <p>Plan and schedule with confidence. Assign venues, set dates, and track every detail with ease.</p>
     </div>
 
+    <!-- Booking feature -->
     <div class="feature">
         <img src="~/images/booking-icon.png" alt="Booking Icon" />
         <h3>Bookings</h3>

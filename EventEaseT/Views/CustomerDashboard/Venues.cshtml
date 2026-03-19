@@ -4,13 +4,16 @@
     <h2>Available Venues</h2>
 
     <div class="row">
+        <!-- Loop through each venue in the model -->
         @foreach (var venue in Model)
         {
             <div class="col-md-4 mb-4">
                 <div class="card h-100 shadow-sm">
                     <!-- Venue image -->
+                    <!-- Uses ImageUrl from the Venue model -->
                     <img src="@venue.ImageUrl" class="card-img-top venue-img" alt="@venue.VenueName" />
 
+                    <!-- Venue details -->
                     <div class="card-body">
                         <h5 class="card-title">@venue.VenueName</h5>
                         <p class="card-text">
@@ -19,6 +22,8 @@
                         </p>
                     </div>
 
+                    <!-- Booking action -->
+                    <!-- Navigates to CustomerDashboardController.CreateBooking with venueId -->
                     <div class="card-footer text-center">
                         <a asp-controller="CustomerDashboard"
                            asp-action="CreateBooking"

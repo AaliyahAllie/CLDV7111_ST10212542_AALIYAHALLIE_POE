@@ -3,9 +3,9 @@
 <style>
     /* Global style for venue images inside cards */
     .venue-img {
-        width: 100%; /* fill the card width */
-        height: 8rem; /* fixed height for uniform cards */
-        object-fit: cover; /* crop/scale nicely */
+        width: 100%;        /* Fill the card width */
+        height: 8rem;       /* Fixed height for uniform cards */
+        object-fit: cover;  /* Crop/scale nicely */
     }
 </style>
 
@@ -13,11 +13,14 @@
     <h2 class="mb-4">Customer Dashboard</h2>
 
     <!-- Quick actions -->
+    <!-- Provides shortcuts for booking events or browsing venues -->
     <div class="row mb-4">
         <div class="col-md-6">
+            <!-- Navigates to CreateBooking action -->
             <a asp-action="CreateBooking" class="btn btn-primary w-100 mb-2">Book an Event</a>
         </div>
         <div class="col-md-6">
+            <!-- Navigates to Venues action -->
             <a asp-action="Venues" class="btn btn-secondary w-100 mb-2">Browse Venues</a>
         </div>
     </div>
@@ -26,6 +29,7 @@
     <div class="row">
         @if (!Model.Any())
         {
+            <!-- Message shown if user has no bookings -->
             <div class="col-12">
                 <div class="alert alert-info text-center">
                     You have no bookings yet. Start by booking an event!
@@ -34,6 +38,7 @@
         }
         else
         {
+            <!-- Loop through each booking -->
             @foreach (var booking in Model)
             {
                 <div class="col-md-4 mb-4">
@@ -41,6 +46,7 @@
                         <!-- Venue image -->
                         <img src="@booking.Venue?.ImageUrl" class="venue-img card-img-top" alt="@booking.Venue?.VenueName" />
 
+                        <!-- Booking details -->
                         <div class="card-body">
                             <h5 class="card-title">@booking.Event?.EventName</h5>
                             <p class="card-text">
@@ -51,8 +57,11 @@
                             </p>
                         </div>
 
+                        <!-- Action buttons -->
                         <div class="card-footer text-center">
+                            <!-- Edit booking -->
                             <a asp-action="EditBooking" asp-route-id="@booking.BookingId" class="btn btn-warning btn-sm">Edit</a>
+                            <!-- Delete booking -->
                             <form asp-action="DeleteBooking" asp-route-id="@booking.BookingId" method="post" style="display:inline">
                                 <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                             </form>

@@ -1,37 +1,46 @@
 ﻿@model EventEaseT.Models.Venue
 @{
-    ViewData["Title"] = "Add Venue";
+    ViewData["Title"] = "Add Venue"; // Sets the page title
 }
 
 <div class="container mt-5">
     <h2>Add Venue</h2>
-    <form asp-action="Create" method="post">
-        @Html.AntiForgeryToken()
 
+    <!-- Venue creation form -->
+    <!-- Posts to VenueController.Create -->
+    <form asp-action="Create" method="post">
+        @Html.AntiForgeryToken() <!-- Protects against CSRF attacks -->
+
+        <!-- Venue name -->
         <div class="mb-3">
             <label class="form-label">Venue Name</label>
             <input asp-for="VenueName" class="form-control" />
             <span asp-validation-for="VenueName" class="text-danger"></span>
         </div>
 
+        <!-- Venue location -->
         <div class="mb-3">
             <label class="form-label">Location</label>
             <input asp-for="Location" class="form-control" />
             <span asp-validation-for="Location" class="text-danger"></span>
         </div>
 
+        <!-- Venue capacity -->
         <div class="mb-3">
             <label class="form-label">Capacity</label>
             <input asp-for="Capacity" type="number" class="form-control" />
             <span asp-validation-for="Capacity" class="text-danger"></span>
         </div>
 
+        <!-- Venue image -->
+        <!-- Optional field for storing a venue photo -->
         <div class="mb-3">
             <label class="form-label">Image URL</label>
             <input asp-for="ImageUrl" class="form-control" />
             <span asp-validation-for="ImageUrl" class="text-danger"></span>
         </div>
 
+        <!-- Submit button -->
         <button type="submit" class="btn btn-success">Save</button>
     </form>
 </div>

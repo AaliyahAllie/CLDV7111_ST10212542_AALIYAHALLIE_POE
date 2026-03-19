@@ -5,34 +5,40 @@
 <div class="container mt-5">
     <h2>Admin Dashboard</h2>
     <div class="row">
-        <!-- Venues -->
+        <!-- Venues Card -->
+        <!-- Provides a link to VenueController.Index for managing venues -->
         <div class="col-md-4 mb-4">
             <div class="card h-100">
                 <div class="card-body text-center">
                     <h5 class="card-title">Manage Venues</h5>
                     <p class="card-text">View and manage all venues.</p>
+                    <!-- Navigates to Venue/Index -->
                     <a asp-controller="Venue" asp-action="Index" class="btn btn-primary">View Venues</a>
                 </div>
             </div>
         </div>
 
-        <!-- Events -->
+        <!-- Events Card -->
+        <!-- Provides a link to EventController.Index for reviewing and approving/denying events -->
         <div class="col-md-4 mb-4">
             <div class="card h-100">
                 <div class="card-body text-center">
                     <h5 class="card-title">Manage Events</h5>
                     <p class="card-text">Review, approve, or deny events.</p>
+                    <!-- Navigates to Event/Index -->
                     <a asp-controller="Event" asp-action="Index" class="btn btn-success">View Events</a>
                 </div>
             </div>
         </div>
 
-        <!-- Bookings -->
+        <!-- Bookings Card -->
+        <!-- Provides a link to BookingController.Index for managing customer bookings -->
         <div class="col-md-4 mb-4">
             <div class="card h-100">
                 <div class="card-body text-center">
                     <h5 class="card-title">Manage Bookings</h5>
                     <p class="card-text">View and manage customer bookings.</p>
+                    <!-- Navigates to Booking/Index -->
                     <a asp-controller="Booking" asp-action="Index" class="btn btn-warning">View Bookings</a>
                 </div>
             </div>

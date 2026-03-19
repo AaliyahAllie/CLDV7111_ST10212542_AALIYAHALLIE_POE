@@ -1,38 +1,50 @@
 ﻿@model EventEaseT.Models.Venue
 @{
-    ViewData["Title"] = "Edit Venue";
+    ViewData["Title"] = "Edit Venue"; // Sets the page title
 }
 
 <div class="container mt-5">
     <h2>Edit Venue</h2>
+
+    <!-- Venue edit form -->
+    <!-- Posts to VenueController.Edit -->
     <form asp-action="Edit" method="post">
-        @Html.AntiForgeryToken()
+        @Html.AntiForgeryToken() <!-- Protects against CSRF attacks -->
+
+        <!-- Hidden field for VenueId -->
+        <!-- Ensures the correct venue record is updated -->
         <input type="hidden" asp-for="VenueId" />
 
+        <!-- Venue name -->
         <div class="mb-3">
             <label class="form-label">Venue Name</label>
             <input asp-for="VenueName" class="form-control" />
             <span asp-validation-for="VenueName" class="text-danger"></span>
         </div>
 
+        <!-- Venue location -->
         <div class="mb-3">
             <label class="form-label">Location</label>
             <input asp-for="Location" class="form-control" />
             <span asp-validation-for="Location" class="text-danger"></span>
         </div>
 
+        <!-- Venue capacity -->
         <div class="mb-3">
             <label class="form-label">Capacity</label>
             <input asp-for="Capacity" type="number" class="form-control" />
             <span asp-validation-for="Capacity" class="text-danger"></span>
         </div>
 
+        <!-- Venue image -->
+        <!-- Optional field for storing a venue photo -->
         <div class="mb-3">
             <label class="form-label">Image URL</label>
             <input asp-for="ImageUrl" class="form-control" />
             <span asp-validation-for="ImageUrl" class="text-danger"></span>
         </div>
 
+        <!-- Submit button -->
         <button type="submit" class="btn btn-primary">Update</button>
     </form>
 </div>

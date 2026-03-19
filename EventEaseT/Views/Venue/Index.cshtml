@@ -1,25 +1,36 @@
 ﻿@model IEnumerable<EventEaseT.Models.Venue>
 @{
-    ViewData["Title"] = "Venues";
+    ViewData["Title"] = "Venues"; // Sets the page title
 }
 
 <div class="container mt-5">
     <h2>Venues</h2>
+
+    <!-- Venue count -->
     <p>Total Venues: @ViewBag.VenueCount</p>
+
+    <!-- Quick action: Add new venue -->
     <a asp-action="Create" class="btn btn-success mb-3">Add Venue</a>
 
+    <!-- Venue cards -->
     <div class="row">
+        <!-- Loop through each venue -->
         @foreach (var venue in Model)
         {
             <div class="col-md-4 mb-4">
                 <div class="card h-100">
+                    <!-- Venue image -->
                     <img src="@venue.ImageUrl" class="card-img-top venue-img" alt="@venue.VenueName" />
+
+                    <!-- Venue details -->
                     <div class="card-body">
                         <h5 class="card-title">@venue.VenueName</h5>
                         <p class="card-text">
                             📍 @venue.Location <br />
                             Capacity: @venue.Capacity
                         </p>
+
+                        <!-- Edit button -->
                         <a asp-action="Edit" asp-route-id="@venue.VenueId" class="btn btn-primary">Edit</a>
                     </div>
                 </div>

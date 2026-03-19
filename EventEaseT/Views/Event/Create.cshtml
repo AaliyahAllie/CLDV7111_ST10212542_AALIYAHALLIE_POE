@@ -1,32 +1,39 @@
 ﻿@model EventEaseT.Models.Event
 @{
-    ViewData["Title"] = "Add Event";
+    ViewData["Title"] = "Add Event"; // Sets the page title
 }
 
 <div class="container mt-5">
     <h2>Add Event</h2>
-    <form asp-action="Create" method="post">
-        @Html.AntiForgeryToken()
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
+    <!-- Event creation form -->
+    <!-- Posts to EventController.Create -->
+    <form asp-action="Create" method="post">
+        @Html.AntiForgeryToken() <!-- Protects against CSRF attacks -->
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" }) <!-- Displays validation errors -->
+        <!-- Event name -->
         <div class="mb-3">
             <label class="form-label">Event Name</label>
             <input asp-for="EventName" class="form-control" />
             <span asp-validation-for="EventName" class="text-danger"></span>
         </div>
 
+        <!-- Event date -->
         <div class="mb-3">
             <label class="form-label">Event Date</label>
             <input asp-for="EventDate" type="date" class="form-control" />
             <span asp-validation-for="EventDate" class="text-danger"></span>
         </div>
 
+        <!-- Event description -->
         <div class="mb-3">
             <label class="form-label">Description</label>
             <textarea asp-for="Description" class="form-control"></textarea>
             <span asp-validation-for="Description" class="text-danger"></span>
         </div>
 
+        <!-- Venue selection -->
+        <!-- Populated from ViewBag.Venues -->
         <div class="mb-3">
             <label class="form-label">Venue</label>
             <select asp-for="VenueId"
@@ -36,11 +43,13 @@
             <span asp-validation-for="VenueId" class="text-danger"></span>
         </div>
 
+        <!-- Submit button -->
         <button type="submit" class="btn btn-success">Save</button>
     </form>
 </div>
 
 @section Scripts {
+    <!-- Enables client-side validation scripts -->
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
