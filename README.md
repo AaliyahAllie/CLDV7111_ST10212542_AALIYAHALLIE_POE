@@ -46,4 +46,7 @@ The database consists of five main tables:
 ## 🛠️ ACCESS LINK :
 - GITHUB: https://github.com/AaliyahAllie/CLDV7111_ST10212542_AALIYAHALLIE_POE.git (SOURCE CODE)
 - WEB APP: cldv-eventease-hzbgardxcwgpg4dy.canadacentral-01.azurewebsites.net
-- DEMO/SETUP: 
+- YouTube Links:
+- Event Ease Deployment Video: https://youtu.be/_NIIkECHBzk
+- Demo Video: https://youtu.be/84GJilGdbVE
+
