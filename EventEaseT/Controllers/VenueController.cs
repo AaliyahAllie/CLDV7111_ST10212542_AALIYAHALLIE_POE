@@ -33,10 +33,14 @@ public class VenueController : Controller
             _context.Venues.Add(venue);
             var result = _context.SaveChanges();
             Console.WriteLine($"Rows affected: {result}");
-            Console.WriteLine($"Database: {_context.Database.GetDbConnection().Database}");
-            Console.WriteLine($"DataSource: {_context.Database.GetDbConnection().DataSource}");
             return RedirectToAction("Index");
         }
+
+        foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
+        {
+            Console.WriteLine($"Validation error: {error.ErrorMessage}");
+        }
+
         return View(venue);
     }
 
@@ -55,10 +59,23 @@ public class VenueController : Controller
     {
         if (ModelState.IsValid)
         {
-            _context.Venues.Update(venue);
+            var existingVenue = _context.Venues.Find(venue.VenueId);
+            if (existingVenue == null) return NotFound();
+
+            existingVenue.VenueName = venue.VenueName;
+            existingVenue.Location = venue.Location;
+            existingVenue.Capacity = venue.Capacity;
+            existingVenue.ImageUrl = venue.ImageUrl;
+
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
+        {
+            Console.WriteLine($"Validation error: {error.ErrorMessage}");
+        }
+
         return View(venue);
     }
 }
